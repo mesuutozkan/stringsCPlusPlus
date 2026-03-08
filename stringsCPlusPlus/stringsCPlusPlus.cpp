@@ -5,29 +5,40 @@ using namespace std;
 
 int main()
 {
-	char name[] = "John";	//C type string
-	cout << name << endl;
+	string fruit = "Apple";
 
-	int length = 0;
+	cout << fruit << endl << fruit.length() << endl;
 
-	while (name[length] != '\0')		// \0 -> null character
+	cout << fruit.append(" juice") << endl;
+
+	string neu = fruit + " is nice";
+	cout << neu << endl;
+
+	cout << neu.substr(0, 5) << endl;		//Apple
+	cout << neu.substr(15, 4) << endl;		//nice
+
+	size_t pos = neu.find("nice");		//dont use int. use size_t which takes unsigned integers.
+	if (pos != string::npos)		//npos is a value that if boolean is false, pos = neu.find() is equal to npos.
 	{
-		length++;
+		cout << "word is found. Position: " << pos << endl;		//15
 	}
 
-	cout << "length: " << length << endl;
+	pos = neu.find("bice");
+	if (pos == string::npos)
+	{
+		cout << "word is not found. npos: " << pos << endl;		//random unsigned integer
+	}
 
-	string myStr = "Hello";		//modern C++ string class 
-	cout << myStr.append(" John") << endl;		//append method to add new string to end of the mystr. 
+	neu.erase(5, 6);
+	cout <<	"After erase method: " << neu << endl;		//Apple is nice
 
-	// name.append is not possible. Because it is C string.
+	neu.replace(0, 5, "Banana");
+	cout << "After replace method: " << neu << endl;	//Banana is nice
 
-	char newName[] = "Jack";
-	string newStr = string(newName);
-	cout << "new name that is converted to C++ string: " << newStr << endl;		//typecast C str to C++ str.
-	
-	newStr.append(" Hello");
-	cout << "appended and now it is : " << newStr << endl; //newStr is now: Jack Hello.
+	neu.insert(6, " juice");
+	cout << "After insert method: " << neu << endl;
 
+	cout << "charachter at index 13: " << neu.at(13) << endl; //i
 
+	return 0;
 }
